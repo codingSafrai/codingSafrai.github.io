@@ -1,0 +1,205 @@
+2
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="RegistrationStyle.css">
+  
+    <style>
+    
+   a:link { color:#101643; text-decoration: underline; }
+ a:visited { color:#101643; text-decoration: underline; }
+ a:hover { color:#101643; text-decoration: underline; }
+ a:active { color:#101643; text-decoration: underline; }
+  </style>
+      
+  </head>
+  
+<body>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      var kidsInfo = {};
+
+      function validateDate() {
+        var inputDate = document.getElementById("birthday").value;
+        var date = new Date(inputDate);
+        var currentDate = new Date();
+        var sixYearsAgo = new Date();
+        sixYearsAgo.setFullYear(currentDate.getFullYear() - 6);
+        return date <= sixYearsAgo;
+      }
+
+      function validateForm(event) {
+        var formId = event.target.id;
+        var firstName = document.getElementById("firstname").value;
+        var lastName = document.getElementById("lastname").value;
+        var phoneNumber = document.getElementById("phone").value;
+        var birthday = document.getElementById("birthday").value;
+        var email = document.getElementById("email").value;
+        var photoInput = document.getElementById("photo");
+        var genderRadios = document.getElementsByName("gender");
+        var selectedGender = "";
+        for (var i = 0; i < genderRadios.length; i++) {
+          if (genderRadios[i].checked) {
+            selectedGender = genderRadios[i].value;
+            break;
+          }
+        }
+
+        if (firstName === "" || lastName === "" || phoneNumber === "" || birthday === "" || photoInput.files.length === 0) {
+          alert("Please fill out all fields.");
+          return false;
+        }
+
+        if (!/^[A-Za-z]/.test(firstName)) {
+          alert("First name cannot start with numbers.");
+          return false;
+        }
+
+        if (!/^\d{10}$/.test(phoneNumber)) {
+          alert("Phone number should contain exactly 10 digits.");
+          return false;
+        }
+
+        if (!validateDate()) {
+          alert("DOB should be after 2017, children younger than 6 are not accepted.");
+          return false;
+        }
+
+        if (!kidsInfo[formId]) {
+          kidsInfo[formId] = [];
+        }
+        kidsInfo[formId].push(firstName);
+        localStorage.setItem("kidsInfo", JSON.stringify(kidsInfo));
+
+        var photoFile = photoInput.files[0];
+        var childWindow = window.open("", "ChildInfoWindow", "width=400,height=400");
+
+        var content = `
+          <html>
+            <head>
+              <title>Child Information</title>
+            </head>
+            <body>
+              <h2>Child Information:</h2>
+              <img id="kidPhoto" alt="Kid Photo">
+              <p>Name: ${firstName} ${lastName}</p>
+              <p>Phone Number: ${phoneNumber}</p>
+              <p>Birthday: ${birthday}</p>
+              <p>Gender: ${selectedGender}</p>
+              <p>Email: ${email}</p>
+            </body>
+          </html>
+        `;
+
+        childWindow.document.write(content);
+
+        var kidPhoto = childWindow.document.getElementById('kidPhoto');
+        kidPhoto.onload = function () {
+          childWindow.print();
+        };
+        kidPhoto.src = URL.createObjectURL(photoFile);
+
+        childWindow.document.close();
+
+        event.preventDefault();
+
+        return false;
+      }
+
+      var forms = document.querySelectorAll('form');
+      forms.forEach(function (form) {
+        form.addEventListener('submit', validateForm);
+      });
+    });
+  </script>
+  <header>
+    <div id="logo">
+      <img src="images/logo.png" alt="logo" height="120" width="120">
+    </div>
+    <div id="website-name">
+      <h1>Coding Safari</h1>
+    </div>
+    <h5><q>Empowering young minds <br>through coding adventures</q></h5>
+    <ul class="breadcrumb">
+      <li><a href="Index.html">Home</a></li>
+      <li><a href="ParentDashboard.html">Parent Dashboard</a></li>
+      <li><a href="Registration.html">Registration</a></li>
+    </ul>
+    
+ <button id="theme-toggle">Customize</button>
+	        <script src="script.js"></script>
+    
+  </header>
+  <aside>
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-item1"><a href="CurrentCourses.html"accesskey="c">Current Courses</a></li>
+        <li class="nav-item2"><a href="tutors.html" accesskey="t">Tutors</a></li>
+        <li class="nav-item3"><a href="ParentDashboard.html" accesskey="p">Parent Dashboard</a></li>
+        <li class="nav-item4"><a href="administrators.html" accesskey="a">Administrators Dashboard</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main>
+    <div class="box">
+      <h2>Register a new kid</h2>
+      <div class="form">
+        <form id="registrationForm" method="post" onsubmit="return validateForm()"> 
+          <fieldset>
+            <legend>Kid Information</legend>
+            <ul style="color: green">
+              <li>
+                <label for="firstname">First name:</label>
+                <input type="text" id="firstname" name="firstname" required>
+              </li>
+              <li>
+                <label for="lastname">Last name:</label>
+                <input type="text" id="lastname" name="lastname" required>
+              </li>
+              <li>
+                <label for="photo">Kid photo:</label>
+                <input type="file" name="photo" id="photo" accept="image/*" required>
+              </li>
+              <li>
+                <label>Gender:</label>
+                <input type="radio" id="male" name="gender" value="Male" required> Male
+                <input type="radio" id="female" name="gender" value="Female" required> Female
+              </li>
+              <li>
+                <label for="birthday">Birthday:</label>
+                <input type="date" id="birthday" name="birthday" required>
+              </li>
+            </ul>
+            <h4>Contact Info:</h4>
+            <ul>
+              <li>
+                <label for="phone">Phone No:</label>
+                <input type="tel" id="phone" name="phone" placeholder="05########" pattern="[0-9]{10}" required>
+              </li>
+              <li>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+              </li>
+              <li>
+                <input type="submit" value="Submit">
+              </li>
+            </ul>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <h3>Contact us</h3>
+    <p>Email: <a href="mailto:CodingSafari@gmail.com">CodingSafari@gmail.com</a></p>
+    <p>Phone: 0553892789</p>
+    <p>&copy;2023 CodingSafari, all rights reserved.</p>
+  </footer>
+ 
+ 
+</body>
+</html>

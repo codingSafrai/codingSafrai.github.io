@@ -1,0 +1,53 @@
+:root
+{
+
+	--primary-color: #f5f5dc;
+	--secondary-color:white;
+	--course-color:#FFFFF0;
+	--font-color:black;
+	--secondary-font-color: #666;
+	--links-color: #101643;
+	--border-color: #EDEBCE
+	--box-shadow:0px 0px 10px;
+}
+
+.dark-mode
+{
+	--primary-color: #4C483A;
+	--secondary-color: #35342E;
+	--course-color:#47453D;
+	--font-color:white;
+	--secondary-font-color: #666
+	--links-color: yellow;
+	--border-color: #171615;
+	--box-shadow:0px 0px 10px #46453D;
+}
+
+
+
+.tr-stl
+{
+	background-color: var(--secondary-color);
+	text-align: center;
+}
+
+.NA
+{
+background-color: grey;
+}
+
+.table-header
+{
+	background-color: lightgrey;
+	text-align: center;
+	color: black;
+}
+
+table
+{
+	width:50%;
+	 background-color:black;
+	  margin-left: auto;
+      margin-right: auto;
+	 
+}

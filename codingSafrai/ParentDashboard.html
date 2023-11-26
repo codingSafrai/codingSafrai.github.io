@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Parent Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ParentDashboard.css">
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve kids' names from local storage
+    var kidsInfo = JSON.parse(localStorage.getItem("kidsInfo")) || {};
+
+    // Check if there are no children stored
+    if (Object.keys(kidsInfo).length === 0) {
+        // If empty, save 2 children's names
+        addKid(kidsInfo, "Sara");
+        addKid(kidsInfo, "Norah");
+
+        // Save the updated data to local storage
+        saveKidsInfo(kidsInfo);
+    }
+
+    // Display existing kids' names
+    displayKidsNames(kidsInfo);
+
+    // Sample event listener for adding a new kid
+    document.getElementById("addKidBtn").addEventListener("click", function() {
+        // Sample prompt for getting the new kid's name
+        var newKidName = prompt("Enter the new kid's name:");
+
+        // Add the new kid to the existing data
+        if (newKidName) {
+            addKid(kidsInfo, newKidName);
+
+            // Display updated kids' names
+            displayKidsNames(kidsInfo);
+
+            // Save the updated data to local storage
+            saveKidsInfo(kidsInfo);
+        }
+    });
+
+    // Function to display kids' names
+    function displayKidsNames(kidsInfo) {
+        var kidsList = document.getElementById("kidsList");
+        kidsList.innerHTML = ""; // Clear existing list
+
+        // Iterate through the kidsInfo object and add names to the list
+        for (var formId in kidsInfo) {
+            var namesArray = kidsInfo[formId];
+
+            namesArray.forEach(function(childName) {
+                var li = document.createElement("li");
+                li.textContent = childName;
+                kidsList.appendChild(li);
+            });
+        }
+    }
+
+    // Function to add a new kid
+    function addKid(kidsInfo, newKidName) {
+        // Sample form ID (you might want to generate a unique ID)
+        var formId = "someFormId";
+
+        // Check if the form ID exists in kidsInfo, if not, create it
+        if (!kidsInfo[formId]) {
+            kidsInfo[formId] = [];
+        }
+
+        // Add the new kid's name to the array
+        kidsInfo[formId].push(newKidName);
+    }
+
+    // Function to save kids' info to local storage
+    function saveKidsInfo(kidsInfo) {
+        localStorage.setItem("kidsInfo", JSON.stringify(kidsInfo));
+    }
+});
+
+    </script>
+    
+      <style>
+   a:link { color:#101643; text-decoration: underline; }
+ a:visited { color:#101643; text-decoration: underline; }
+ a:hover { color:#101643; text-decoration: underline; }
+ a:active { color:#101643; text-decoration: underline; }
+  </style>
+  
+  </head>
+<body>
+    <header>
+        <div id="logo">
+            <img src="images/logo.png" alt="logo" height="120" width="120">
+        </div>
+        <div id="websit-name">
+            <h1>Coding Safari</h1>
+        </div>
+        <h5><q>Empowering young minds <br>through coding adventures</q></h5>
+        <ul class="breadcrumb">
+            <li><a href="Index.html">Home</a></li>
+            <li><a href="ParentDashboard.html">Parent Dashboard</a></li>
+        </ul>
+        
+ <button id="theme-toggle">Customize</button>
+	        <script src="script.js"></script>
+        
+    </header>
+    <aside>
+        <nav>
+            <ul class="nav-list">
+                <li class="nav-item1"><a href="CurrentCourses.html" accesskey="c">Current Courses</a></li>
+                <li class="nav-item2"><a href="tutors.html" accesskey="t">Tutors</a></li>
+                <li class="nav-item3"><a href="ParentDashboard.html" accesskey="p">Parent Dashboard</a></li>
+                <li class="nav-item4"><a href="administrators.html" accesskey="a">Administrators Dashboard</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main>
+        <div class="container">
+            <div class="kids">
+                <h2>My Kids</h2>
+                <ul id="kidsList" class="list">
+                    <!-- Kids names will be dynamically added here -->
+                   
+                </ul>
+            </div>
+
+            <div class="button-row">
+                <button class="styled-button" onclick="window.location.href='Registration.html'">Add a new kid</button>
+                <button class="styled-button" onclick="window.location.href='courseenrolment.html'">Course enrollment</button>
+                <button class="styled-button" onclick="window.location.href='CourseEvaluation.html'">Course evaluation</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <h3>Contact us</h3>
+        <p>Email: <a href="mailto:CodingSafari@gmail.com">CodingSafari@gmail.com</a></p>
+        <p>Phone: 0553892789</p>
+        <p> &copy;2023 CodingSafari, all rights reserved.</p>
+    </footer>
+
+</body>
+</html>

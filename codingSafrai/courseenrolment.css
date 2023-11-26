@@ -1,0 +1,106 @@
+
+
+:root
+{
+
+	--primary-color: #f5f5dc;
+	--secondary-color:white;
+	--course-color:#FFFFF0;
+	--font-color:black;
+	--secondary-font-color: #666;
+	--links-color: #101643;
+	--border-color: #EDEBCE
+}
+
+.dark-mode
+{
+	--primary-color: #4C483A;
+	--secondary-color: #35342E;
+	--course-color:#47453D;
+	--font-color:white;
+	--secondary-font-color: #666
+	--links-color: yellow;
+	--border-color: #171615;
+}
+
+.form-container {
+    flex-direction: column;
+    align-items:flex-end;
+    width: 270%;
+    
+}
+
+        .form-box {
+            max-width:25%;
+            margin: 40px;
+            background-color: var(--secondary-color);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: left;
+            position: relative; 
+        }
+
+        h3 {
+            font-size: 24px;
+            margin: 0;
+			text-align:center;
+            display: inline-block; /* Display h3 inline with form-box */
+            margin-right: 20px; /* Adjust the margin-right as needed */
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        img.course-image {
+            max-width: 50px;
+            max-height: 50px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #8A9A5B;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+			margin:2%;
+        }
+
+        input[type="submit"]:hover {
+            background-color:  #355E3B;
+        }
+
+        .course-div {
+            display: flex;
+            align-items: center;
+			margin-left:5%;
+			padding:1%;
+        }
+
+        .course-details {
+            flex-grow: 1;
+        }
+        #display-info-container {
+            border: 2px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        
+	
+				

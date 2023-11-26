@@ -1,0 +1,134 @@
+2
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8">
+    <title>Tuters Page</title>
+    <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="tutor.css">
+	<style>
+		a:link { color:#101643; text-decoration: underline; }
+	  a:visited { color:#101643; text-decoration: underline; }
+	  a:hover { color:#101643; text-decoration: underline; }
+	  a:active { color:#101643; text-decoration: underline; }
+	   </style>
+	   
+		   
+	 </head>
+	 <body>
+		 <header>
+			 <div  id="logo">
+				 <img src="images/logo.png" alt="logo" height="120" width="120">
+			 </div>
+			 <div id="websit-name">
+			 <h1>Coding Safari</h1>
+			 </div>
+			 
+			 <h5><q>Empowering young minds <br>through coding adventures</q></h5>
+			 <ul class="breadcrumb">
+				<li><a href="Index.html">Home</a></li>
+				<li><a href="tutors.html">Tutors Page</a></li>
+			  </ul>
+	
+	  <button id="theme-toggle">Customize</button>
+		 <script src="script.js"></script>
+		 
+		 </header>
+		  <aside>
+			<nav>
+				<ul class="nav-list">
+				<li class="nav-item1"><a href="courses.html" accesskey="c">Current Courses</a></li>
+				<li class="nav-item2"><a href="tutors.html" accesskey="t">Tutors</a></li>
+				<li class="nav-item3"><a href="ParentDashboard.html" accesskey="p">Parent Dashboard</a></li>
+				<li class="nav-item4"><a href="administrators.html" accesskey="a">Administrators Dashboard</a></li>
+				</ul>
+				</nav>
+	
+		 </aside>
+		 <main>
+		 <div class="Tuters">
+			  <div class="T">
+			  <img src="images/Woman.PNG" alt="tuter" height="100" width="100">
+					 <h3>Nurah</h3>
+					 <h3>Java course</h3>
+			  </div>
+			  <div class="T">
+			  <img src="images/Woman.PNG" alt="tuter" height="100" width="100">
+					 <h3>Sara</h3>
+					 <h3>HTML course</h3>
+			  </div>
+			  <div class="T">
+			  <img src="images/Woman.PNG" alt="tuter" height="100" width="100">
+					 <h3>Dhai</h3>
+					 <h3>Python course</h3>
+			  </div>
+			  <div class="T">
+			  <img src="images/man.PNG" alt="tuter" height="100" width="100">
+					 <h3>Saud</h3>
+					 <h3>SQL course</h3>
+			  </div>
+			  <div class="T">
+			  <img src="images/man.PNG" alt="tuter" height="100" width="100">
+					 <h3>Turki</h3>
+					 <h3>C++ course</h3>
+			  </div>
+			  <div class="T">
+			  <img src="images/man.PNG" alt="tuter" height="100" width="100">
+					 <h3>Abdullah</h3>
+					 <h3>R course</h3>
+			  </div>
+			  
+		 
+		 </div>
+		 <div class="sorting">
+			 <p>Sort Tutors
+				 <select id="sortDropdown">
+					 <option value="ascending">from A-Z</option>
+					 <option value="descending">from Z-A</option>
+				 </select>
+				 <button id="sortButton">Sort</button>
+			 </p>
+		 </div>
+		 </main>
+		 <footer>
+			 <h3>Contact us </h3>
+			 <p>Email: <a href="mailto:CodingSafari@gmail.com">CodingSafari@gmail.com</a></p>
+			 <p>Phone:0553892789</p>
+			 <p> &copy;2023 CodingSafari, all rights reserved.</p>
+		 </footer>
+		 <script>
+	 var sortOrder = 1; // 1 for ascending order, -1 for descending order
+	 
+	 function sortTutors() {
+		 var tutorsContainer = document.querySelector('.Tuters');
+		 var tutors = Array.from(tutorsContainer.children);
+		 var sortBy = document.getElementById('sortDropdown').value;
+	 
+		 tutors.sort(function (a, b) {
+			 var valueA = a.querySelector('h3').textContent.toUpperCase();
+			 var valueB = b.querySelector('h3').textContent.toUpperCase();
+	 
+			 if (sortBy === 'descending') {
+				 return valueB.localeCompare(valueA) * sortOrder;
+			 } else {
+				 return valueA.localeCompare(valueB) * sortOrder;
+			 }
+		 });
+	 
+		 tutorsContainer.innerHTML = '';
+	 
+		 tutors.forEach(function (tutor) {
+			 tutorsContainer.appendChild(tutor);
+		 });
+	 
+		 // Toggle the sortOrder for the next click
+		 sortOrder *= -1;
+	 }
+	 
+	 document.getElementById('sortButton').addEventListener('click', sortTutors);
+	 </script>
+		 </script>
+		 
+	 </body>
+	 </html>
